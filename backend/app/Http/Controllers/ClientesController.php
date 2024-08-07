@@ -35,50 +35,100 @@ class ClientesController extends Controller
     }
 
 
+    // public function guardar(Request $request)
+    // {
+    //     $validator= Validator::make($request->all(),[
+    //         'nombre'=>'required',
+    //         'apellido'=>'required',
+    //         'CI'=>'required',
+    //         'direccion'=>'required'
+    //     ]);
+    //     if($validator->fails()){
+    //         $data=[
+    //             'msg' => 'Error en la validacion',
+    //             'errors' => $validator->errors(),
+    //             'status'=>400
+    //         ];
+    //         return response()->json(
+    //             $data,400);
+    //     }
+
+    //     $cliente= Clientes::create([
+    //         'nombre'=> $request->nombre,
+    //         'apellido'=> $request->apellido,
+    //         'CI'=> $request->CI,
+    //         'correo'=> $request->correo,
+    //         'direccion'=> $request->direccion
+    //     ]);
+
+    //     if(!$cliente){
+    //         $data=[
+    //             'msg' => 'Error al guardar el cliente',
+    //            'status'=>500
+    //         ];
+    //         return response()->json(
+    //             $data,500);
+    //     }
+
+    //     $data=[
+    //        'msg'=>'true',
+    //         'cliente' => $cliente,
+    //        'status'=>201
+    //     ];
+    //     return response()->json($data,201);
+
+
+    // }
     public function guardar(Request $request)
-    {
-        $validator= Validator::make($request->all(),[
-            'nombre'=>'required',
-            'apellido'=>'required',
-            'CI'=>'required',
-            'direccion'=>'required'
-        ]);
-        if($validator->fails()){
-            $data=[
-                'msg' => 'Error en la validacion',
-                'errors' => $validator->errors(),
-                'status'=>400
-            ];
-            return response()->json(
-                $data,400);
-        }
+{
+    // Validar los datos de entrada
+    $validator = Validator::make($request->all(), [
+        'nombre' => 'required',
+        'apellido' => 'required',
+        'CI' => 'required|unique:clientes,CI',  // Verifica que el CI sea único en la tabla clientes
+        'direccion' => 'required'
+    ]);
 
-        $cliente= Clientes::create([
-            'nombre'=> $request->nombre,
-            'apellido'=> $request->apellido,
-            'CI'=> $request->CI,
-            'correo'=> $request->correo,
-            'direccion'=> $request->direccion
-        ]);
+    // Si la validación falla, devolver errores específicos
+    if ($validator->fails()) {
+        // Verifica si el error es de unicidad
+        $errors = $validator->errors();
+        $msg = $errors->has('CI') ? 'El cliente con este CI ya existe.' : 'Error en la validación';
 
-        if(!$cliente){
-            $data=[
-                'msg' => 'Error al guardar el cliente',
-               'status'=>500
-            ];
-            return response()->json(
-                $data,500);
-        }
-
-        $data=[
-           'msg'=>'true',
-            'cliente' => $cliente,
-           'status'=>201
+        $data = [
+            'msg' => $msg,
+            'errors' => $errors,
+            'status' => 400
         ];
-        return response()->json($data,201);
-
-
+        return response()->json($data, 400);
     }
+
+    // Crear el nuevo cliente
+    $cliente = Clientes::create([
+        'nombre' => $request->nombre,
+        'apellido' => $request->apellido,
+        'CI' => $request->CI,
+        'correo' => $request->correo,
+        'direccion' => $request->direccion
+    ]);
+
+    // Verificar si el cliente fue creado exitosamente
+    if (!$cliente) {
+        $data = [
+            'msg' => 'Error al guardar el cliente',
+            'status' => 500
+        ];
+        return response()->json($data, 500);
+    }
+
+    $data = [
+        'msg' => 'Cliente guardado con éxito',
+        'cliente' => $cliente,
+        'status' => 201
+    ];
+    return response()->json($data, 201);
+}
+
 
     public function mostrar($id)
     {
