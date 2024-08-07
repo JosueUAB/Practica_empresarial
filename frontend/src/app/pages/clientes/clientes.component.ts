@@ -14,21 +14,14 @@ import { CommonModule } from '@angular/common';
 })
 export class ClientesComponent implements OnInit {
   cargando: boolean = false;
-  listadeClientes:any = []; // Utiliza el tipo adecuado para la lista de clientes
-  validarFormulario: FormGroup; // Formulario reactivo para gestionar la creación de clientes
+  listadeClientes:any = [];
 
-  // Inyectar el servicio ClientesService y FormBuilder en el constructor
-  constructor(private fb: FormBuilder, private clientesService: ClientesService) {
-    // Inicializar el formulario reactivo con validaciones
-    this.validarFormulario = this.fb.group({
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      telefono: ['', Validators.required],
-      direccion: [''],
-    });
 
-    this.getClientes(); // Llamar a getClientes para obtener la lista de clientes al crear el componente
+
+  constructor(
+    private fb:FormBuilder ,
+    private clientesService: ClientesService) {
+    this.getClientes();
   }
 
   ngOnInit(): void {}
