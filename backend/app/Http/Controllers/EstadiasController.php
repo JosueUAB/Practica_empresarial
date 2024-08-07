@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Estadia;
 use App\Models\Habitaciones;
 use App\Models\Clientes;
+use App\Models\Ingresos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
@@ -99,6 +100,7 @@ class EstadiasController extends Controller
 
     public function guardar(Request $request)
     {
+        // Validación
         $validator = Validator::make($request->all(), [
             'cliente_id' => 'required|exists:clientes,id',
             'habitacion_id' => 'required|exists:habitaciones,id',
@@ -157,12 +159,12 @@ class EstadiasController extends Controller
 
         // Registrar el ingreso diario
         $fecha_actual = Carbon::now()->toDateString();
-        $ingreso_diario = IngresoDiario::where('fecha', $fecha_actual)->first();
+        $ingreso_diario = Ingresos::where('fecha', $fecha_actual)->first();
 
         if ($ingreso_diario) {
             $ingreso_diario->increment('monto_total', $monto_pagar);
         } else {
-            IngresoDiario::create([
+            Ingresos::create([
                 'fecha' => $fecha_actual,
                 'monto_total' => $monto_pagar
             ]);

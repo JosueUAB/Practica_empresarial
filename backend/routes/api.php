@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\EstadiasController;
+use App\Http\Controllers\ReportesController;
 use App\Http\Controllers\HabitacionesController;
 
 
@@ -41,3 +42,6 @@ Route::prefix('estadias')->group(function () {
     Route::put('/{id}', [EstadiasController::class, 'actualizar']);
     Route::delete('/{id}', [EstadiasController::class, 'eliminar']);
 });
+
+// Ruta para generar el reporte mensual
+Route::get('/reportes/mesuales', [ReportesController::class, 'reporteMensual']);
