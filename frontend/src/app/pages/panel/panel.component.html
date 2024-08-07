@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Resumen del Hotel</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Estilos personalizados */
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+
+  <div class="container mx-auto py-10">
+    <h1 class="text-3xl font-bold mb-6 text-center">Panel de Resumen del Hotel</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Card: Resumen de Habitaciones -->
+      <div class="bg-white rounded-lg shadow-md p-6 card">
+        <h2 class="text-xl font-semibold mb-2">Habitaciones</h2>
+        <div class="flex items-center">
+          <span class="text-3xl font-bold text-blue-500">20</span>
+          <span class="ml-2 text-gray-500">Disponibles</span>
+        </div>
+        <div class="flex items-center mt-2">
+          <span class="text-3xl font-bold text-red-500">10</span>
+          <span class="ml-2 text-gray-500">Ocupadas</span>
+        </div>
+        <div class="flex items-center mt-2">
+          <span class="text-3xl font-bold text-yellow-500">5</span>
+          <span class="ml-2 text-gray-500">En Mantenimiento</span>
+        </div>
+        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+          Ver Detalles
+        </button>
+      </div>
+
+      <!-- Card: Monto Total -->
+      <div class="bg-white rounded-lg shadow-md p-6 card">
+        <h2 class="text-xl font-semibold mb-2">Monto Total</h2>
+        <div class="flex items-center">
+          <span class="text-4xl font-bold text-green-500">$12,500</span>
+        </div>
+        <p class="mt-2 text-gray-500">Ingresos totales generados este mes.</p>
+        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+          Ver Detalles
+        </button>
+      </div>
+
+      <!-- Card: Productos Registrados -->
+      <div class="bg-white rounded-lg shadow-md p-6 card">
+        <h2 class="text-xl font-semibold mb-2">Productos Registrados</h2>
+        <div class="flex items-center">
+          <span class="text-3xl font-bold text-purple-500">150</span>
+        </div>
+        <p class="mt-2 text-gray-500">Productos disponibles en el inventario.</p>
+        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+          Ver Detalles
+        </button>
+      </div>
+
+      <!-- Card: Clientes Registrados -->
+      <div class="bg-white rounded-lg shadow-md p-6 card">
+        <h2 class="text-xl font-semibold mb-2">Clientes Registrados</h2>
+        <div class="flex items-center">
+          <span class="text-3xl font-bold text-indigo-500">300</span>
+        </div>
+        <p class="mt-2 text-gray-500">Clientes registrados en el sistema.</p>
+        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+          Ver Detalles
+        </button>
+      </div>
+
+      <!-- Card: Clientes en Estadia -->
+      <div class="bg-white rounded-lg shadow-md p-6 card">
+        <h2 class="text-xl font-semibold mb-2">Clientes en Estadia</h2>
+        <div class="flex items-center">
+          <span class="text-3xl font-bold text-orange-500">50</span>
+        </div>
+        <p class="mt-2 text-gray-500">Clientes actualmente en el hotel.</p>
+        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+          Ver Detalles
+        </button>
+      </div>
+
+      <!-- Card: Garaje -->
+      <div class="bg-white rounded-lg shadow-md p-6 card">
+        <h2 class="text-xl font-semibold mb-2">Garaje</h2>
+        <div class="flex items-center">
+          <span class="text-3xl font-bold text-teal-500">25</span>
+          <span class="ml-2 text-gray-500">Vehículos estacionados</span>
+        </div>
+        <div class="flex items-center mt-2">
+          <span class="text-3xl font-bold text-gray-500">50</span>
+          <span class="ml-2 text-gray-500">Capacidad total</span>
+        </div>
+        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+          Ver Detalles
+        </button>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
+<router-outlet></router-outlet>
