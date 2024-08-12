@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Importa las clases necesarias para formularios
+import { EmailValidator, FormBuilder, FormGroup, Validators } from '@angular/forms'; // Importa las clases necesarias para formularios
 import { Clientes } from '../models/Clientes.models'; // Asegúrate de tener el modelo adecuado para Clientes
 import { ClientesService } from '../service/cliente.service'; // Importa el servicio de clientes
 import Swal from 'sweetalert2'; // Importa SweetAlert2 para notificaciones
@@ -19,13 +19,20 @@ export class ClientesComponent implements OnInit {
   cargando: boolean = false;
   listadeClientes:any = [];
 
-  validarFormulario:FormGroup=this.fb.group({
-  nombre:['1212',],
-  apellido:['121212',],
-  correo:['examepl'],
-  CI:['21212',],
-  direccion:['1212',],
- });
+  validarFormulario: FormGroup = this.fb.group({
+    nombre: ['', Validators.required],
+    apellido: ['', Validators.required],
+    numero_documento: ['', [Validators.required]],
+    correo: ['', [Validators.required,]],
+    direccion: ['', Validators.required],
+    nacionalidad: ['', Validators.required],
+    procedencia: ['', Validators.required],
+    fecha_de_nacimiento: ['', Validators.required],
+    estado_civil: ['', Validators.required],
+    telefono: ['', [ ]],
+    tipo_de_huesped: ['', Validators.required],
+    tipo_de_documento: ['', Validators.required],
+  });
 
   constructor(
     private fb:FormBuilder,
@@ -45,42 +52,89 @@ export class ClientesComponent implements OnInit {
   //     console.error(error.error);
   //   })
   // }
+  // crearCliente() {
+  //   if (this.validarFormulario.invalid) {
+  //     console.log('Formulario inválido:', this.validarFormulario.errors);
+  //     Swal.fire({
+  //       icon: 'warning',
+  //       title: 'Formulario incompleto',
+  //       text: 'Por favor, completa todos los campos obligatorios.',
+  //       confirmButtonText: 'Aceptar',
+  //     });
+  //     return;
+  //   }
+
+  //   console.log('Formulario válido:', this.validarFormulario.value);
+
+  //   this.clientesService.crearCliente(this.validarFormulario.value).subscribe(
+  //     (resp) => {
+  //       Swal.fire({
+  //         icon: 'success',
+  //         title: 'Cliente creado',
+  //         text: 'El cliente ha sido creado con éxito.',
+  //         confirmButtonText: 'Aceptar',
+  //       });
+  //       this.getClientes();
+  //       this.validarFormulario.reset();
+  //     },
+  //     (error) => {
+  //       console.error('Error al crear cliente:', error);
+  //       Swal.fire({
+  //         icon: 'error',
+  //         title: 'Error',
+  //         text: error.error.msg || 'Ha ocurrido un error inesperado.',
+  //         confirmButtonText: 'Aceptar',
+  //       });
+  //     }
+  //   );
+  // }
+
   crearCliente() {
+    console.log('Estado de cada campo:', this.validarFormulario.controls);
+
     if (this.validarFormulario.invalid) {
-        // Si el formulario es inválido, muestra un mensaje de error usando SweetAlert2
-        Swal.fire({
-            icon: 'warning',
-            title: 'Formulario incompleto',
-            text: 'Por favor, completa todos los campos obligatorios.',
-            confirmButtonText: 'Aceptar'
-        });
-        return;
+      // Mostrar errores de cada campo
+      Object.keys(this.validarFormulario.controls).forEach(field => {
+        const control = this.validarFormulario.get(field);
+        if (control?.invalid && (control.dirty || control.touched)) {
+          console.log(`${field} es inválido. Errores:`, control.errors);
+        }
+      });
+
+      Swal.fire({
+        icon: 'warning',
+        title: 'Formulario incompleto',
+        text: 'Por favor, completa todos los campos obligatorios.',
+        confirmButtonText: 'Aceptar',
+      });
+
+      return;
     }
 
-    console.log(this.validarFormulario.value);
-    this.clientesService.crearCliente(this.validarFormulario.value)
-    .subscribe(resp => {
-        console.log(resp);
-        this.getClientes();
-        // Muestra una alerta de éxito si la creación es exitosa
-        Swal.fire({
-            icon: 'success',
-            title: 'Cliente creado',
-            text: 'El cliente ha sido creado con éxito.',
-            confirmButtonText: 'Aceptar'
-        });
-    }, error => {
-        console.error(error.error);
-        // Muestra una alerta de error usando SweetAlert2
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: error.error.msg || 'Ha ocurrido un error inesperado.',
-            confirmButtonText: 'Aceptar'
-        });
-    });
-}
+    console.log('Formulario válido:', this.validarFormulario.value);
 
+    this.clientesService.crearCliente(this.validarFormulario.value).subscribe(
+      (resp) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Cliente creado',
+          text: 'El cliente ha sido creado con éxito.',
+          confirmButtonText: 'Aceptar',
+        });
+        this.getClientes();
+        this.validarFormulario.reset();
+      },
+      (error) => {
+        console.error('Error al crear cliente:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: error.error?.msg || 'Ha ocurrido un error inesperado.',
+          confirmButtonText: 'Aceptar',
+        });
+      }
+    );
+  }
 
 
   getClientes() {
@@ -99,4 +153,24 @@ export class ClientesComponent implements OnInit {
       }
     );
   }
+
+
+
+  eliminarCliente(id: any) {
+    this.clientesService.eliminarCliente(id)
+      .subscribe(resp => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Cliente eliminado',
+          text: 'El cliente ha sido eliminado con éxito.',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.getClientes();
+      }, (error) => {
+        console.log(error);
+      });
+  }
+
 }

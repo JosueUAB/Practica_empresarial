@@ -9,11 +9,25 @@ class Clientes extends Model
 {
     use HasFactory;
     protected $table = 'clientes';
-    protected $fillable=[
-        'nombre',
+
+    protected $fillable = [
+       'nombre',
         'apellido',
-        'CI',
+        'numero_documento',
         'correo',
-        'direccion'
+        'direccion',
+        'nacionalidad',
+        'procedencia',
+        'fecha_de_nacimiento',
+        'estado_civil',
+        'telefono',
+        'estado',
+        'tipo_de_huesped',
+        'tipo_de_documento'
+    ];
+
+
+    protected $attributes = [
+        'estado' => 'inactivo',
     ];
 }

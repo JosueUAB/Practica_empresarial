@@ -13,16 +13,18 @@ return new class extends Migration
     {
         Schema::create('habitaciones', function (Blueprint $table) {
             $table->id();
-            $table->string('numero');
-            $table->enum('tipo', ['individual', 'doble', 'colectiva', 'matrimonial']);
+            $table->string('numero', 20);
+            $table->enum('tipo', ['individual', 'doble', 'colectiva', 'matrimonial', 'familiar']);
             $table->integer('cantidad_camas');
-            $table->string('descripcion');
+            $table->integer('limite_personas');
+            $table->text('descripcion')->nullable();
             $table->float('costo');
             $table->boolean('tv')->default(false);
-            $table->boolean('wifi')->default(false);
+            $table->foreignId('wifi_id')->nullable()->constrained('wifi')->onDelete('set null');
             $table->boolean('ducha')->default(false);
             $table->boolean('baño')->default(false);
             $table->boolean('disponible')->default(true);
+            $table->enum('estado', ['disponible', 'mantenimiento', 'limpieza'])->default('disponible');
             $table->timestamps();
         });
     }

@@ -1,1 +1,102 @@
-<p>registro-habitaciones works!</p>
+<form  id="validarFormulario" class="w-full max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+  <h2 class="text-2xl font-bold text-gray-800 mb-6">Registrar Habitación</h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+      <!-- Número de Habitación -->
+      <div class="relative z-0 w-full group">
+          <input type="text" name="numero" id="numero" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required
+          formControlName="numero" />
+          <label for="numero" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Número de Habitación</label>
+      </div>
+
+      <!-- Tipo de Habitación -->
+      <div class="relative z-0 w-full group">
+          <select name="tipo" id="tipo" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" required
+          formControlName="tipo">
+              <option value="">Seleccione Tipo de Habitación</option>
+              <option value="simple">Simple</option>
+              <option value="doble">Doble</option>
+              <option value="suite">Suite</option>
+          </select>
+          <label for="tipo" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tipo de Habitación</label>
+      </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+      <!-- Cantidad de Camas -->
+      <div class="relative z-0 w-full group">
+          <input type="number" name="cantidad_camas" id="cantidad_camas" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required
+          formControlName="cantidad_camas" />
+          <label for="cantidad_camas" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Cantidad de Camas</label>
+      </div>
+
+      <!-- Límite de Personas -->
+      <div class="relative z-0 w-full group">
+          <input type="number" name="limite_personas" id="limite_personas" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required
+          formControlName="limite_personas" />
+          <label for="limite_personas" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Límite de Personas</label>
+      </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+      <!-- Costo -->
+      <div class="relative z-0 w-full group">
+          <input type="number" name="costo" id="costo" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required
+          formControlName="costo" />
+          <label for="costo" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Costo</label>
+      </div>
+
+      <!-- Wi-Fi -->
+      <div class="relative z-0 w-full group">
+          <select name="wifi_id" id="wifi_id" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" required
+          formControlName="wifi_id">
+              <option value="">Seleccione Wi-Fi</option>
+              <!-- Aquí deberías generar las opciones según los Wi-Fi disponibles en tu base de datos -->
+
+          </select>
+          <label for="wifi_id" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Wi-Fi</label>
+      </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+      <!-- TV -->
+      <div class="relative z-0 w-full group">
+          <input type="checkbox" name="tv" id="tv" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" formControlName="tv" />
+          <label for="tv" class="ml-2 text-sm text-gray-900">TV</label>
+      </div>
+
+      <!-- Ducha -->
+      <div class="relative z-0 w-full group">
+          <input type="checkbox" name="ducha" id="ducha" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" formControlName="ducha" />
+          <label for="ducha" class="ml-2 text-sm text-gray-900">Ducha</label>
+      </div>
+
+      <!-- Baño -->
+      <div class="relative z-0 w-full group">
+          <input type="checkbox" name="baño" id="baño" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" formControlName="baño" />
+          <label for="baño" class="ml-2 text-sm text-gray-900">Baño</label>
+      </div>
+
+      <!-- Estado -->
+      <div class="relative z-0 w-full group">
+          <select name="estado" id="estado" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" required
+          formControlName="estado">
+              <option value="disponible">Disponible</option>
+              <option value="ocupado">Ocupado</option>
+              <option value="mantenimiento">Mantenimiento</option>
+          </select>
+          <label for="estado" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Estado</label>
+      </div>
+  </div>
+
+  <div class="mb-6">
+      <!-- Descripción -->
+      <div class="relative z-0 w-full group">
+          <textarea name="descripcion" id="descripcion" rows="4" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required
+          formControlName="descripcion"></textarea>
+          <label for="descripcion" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Descripción</label>
+      </div>
+  </div>
+
+  <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none">Registrar</button>
+</form>

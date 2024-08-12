@@ -15,9 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('apellido');
-            $table->string('CI');
+            $table->string('numero_documento')->unique();
             $table->string('correo');
             $table->string('direccion');
+            $table->string('nacionalidad');
+            $table->string('procedencia');
+            $table->date('fecha_de_nacimiento');
+            $table->enum('estado_civil', ['soltero', 'casado', 'divorciado', 'viudo']);
+            $table->string('telefono');
+            $table->enum('estado', ['activo', 'inactivo'])->default('inactivo');
+            $table->enum('tipo_de_huesped', ['Natural', 'Empresa']);
+            $table->enum('tipo_de_documento', ['CI', 'pasaporte', 'carnet_de_extranjero', 'NIT']);
             $table->timestamps();
         });
     }

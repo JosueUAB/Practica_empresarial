@@ -24,4 +24,23 @@ crearCliente(clientes:any){
     );
   }
 
+  //obtener detalles de cliente
+
+  detallesCliente(id:string){
+    return this.http.get(`${url}/clientes/${id}`);
+  }
+
+  //editar cliente
+
+  editarCliente(cliente:any){
+    return this.http.put(`${url}/clientes/${cliente.id}`,cliente);
+  }
+
+  //eliminar cliente
+  eliminarCliente(id:string){
+    return this.http.delete(`${url}/clientes/${id}`);
+  }
+
+  //buscar cliente
+
 }
