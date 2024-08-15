@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('tv')->default(false);
             $table->unsignedBigInteger('wifi_id')->nullable();
             $table->boolean('ducha')->default(false);
-            $table->boolean('baño')->default(false);
+            $table->boolean('banio')->default(false);
             $table->enum('estado', ['disponible', 'mantenimiento', 'limpieza','ocupado','reservado'])->default('disponible');
             $table->timestamps();
 

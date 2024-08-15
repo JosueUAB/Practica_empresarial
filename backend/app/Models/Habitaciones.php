@@ -22,7 +22,7 @@ class Habitaciones extends Model
         'tv',
         'wifi_id',
         'ducha',
-        'baño',
+        'banio',
         'disponible',
         'estado',
     ];

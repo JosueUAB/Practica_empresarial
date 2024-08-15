@@ -50,6 +50,7 @@ class ReservasController extends Controller
     }
 
     // Guardar una nueva reserva
+    // Guardar una nueva reserva
     public function guardar(Request $request)
     {
         // Validar los datos de la solicitud
@@ -82,8 +83,8 @@ class ReservasController extends Controller
         }
 
         // Calcular la tarifa
-        $fechaInicio = \Carbon\Carbon::parse($request->fecha_inicio);
-        $fechaFin = \Carbon\Carbon::parse($request->fecha_fin);
+        $fechaInicio = Carbon::parse($request->fecha_inicio);
+        $fechaFin = Carbon::parse($request->fecha_fin);
 
         if ($fechaFin->lessThanOrEqualTo($fechaInicio)) {
             return response()->json([
@@ -122,6 +123,13 @@ class ReservasController extends Controller
         // Cambiar el estado de la habitación a "Ocupado"
         $habitacion->estado = 'ocupado';
         $habitacion->save();
+
+        // Actualizar el estado del cliente a "activo"
+        $cliente = Clientes::find($request->cliente_id);
+        if ($cliente) {
+            $cliente->estado = 'activo';
+            $cliente->save();
+        }
 
         return response()->json([
             'msg' => 'Reserva creada con éxito',

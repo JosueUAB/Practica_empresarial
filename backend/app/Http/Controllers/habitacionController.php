@@ -41,7 +41,7 @@ class HabitacionController extends Controller
             'tv' => 'boolean',
             'wifi_id' => 'nullable|exists:wifi,id',
             'ducha' => 'boolean',
-            'baño' => 'boolean',
+            'banio' => 'boolean',
             'estado' => 'required|in:disponible,mantenimiento,limpieza,ocupado,reservado',
         ]);
 
@@ -115,7 +115,7 @@ class HabitacionController extends Controller
             'tv' => 'sometimes|boolean',
             'wifi_id' => 'nullable|exists:wifi,id',
             'ducha' => 'sometimes|boolean',
-            'baño' => 'sometimes|boolean',
+            'banio' => 'sometimes|boolean',
             'estado' => 'sometimes|required|in:disponible,mantenimiento,limpieza,ocupado,reservado',
         ]);
 

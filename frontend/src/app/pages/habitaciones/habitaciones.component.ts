@@ -36,7 +36,7 @@ export class HabitacionesComponent implements OnInit {
     costo: ['', Validators.required],
     tv: [false],    // Valor predeterminado de false
   ducha: [false], // Valor predeterminado de false
-  baño: [false],  // Valor predeterminado de false
+  banio: [false],  // Valor predeterminado de false
 
     estado: ['', Validators.required],
     wifi_id: [''],
@@ -85,7 +85,7 @@ crearHabitacion() {
 
   // Asegúrate de que los valores nulos se cambien a false
   formData.ducha = formData.ducha ?? false;
-  formData.baño = formData.baño ?? false;
+  formData.banio = formData.banio ?? false;
   formData.tv = formData.tv ?? false;
 
   // Log para verificar los valores antes del envío

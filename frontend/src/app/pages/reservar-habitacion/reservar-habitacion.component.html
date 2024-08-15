@@ -1,0 +1,225 @@
+
+
+
+
+
+
+
+
+
+
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 bg-white">
+    <!-- Formulario Crear Cliente -->
+    <div class="flex items-center justify-center rounded bg-white h-auto dark:bg-gray-50 p-4">
+
+      <form [formGroup]="validarFormulario" id="validarFormulario" class="p-4 max-w-2xl mx-auto bg-white rounded-lg shadow-md space-y-6">
+        <!-- Inputs -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Crear Cliente</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Tipo de Huesped -->
+            <div class="relative z-0 w-full group">
+                <select name="tipo_de_huesped" id="tipo_de_huesped" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required formControlName="tipo_de_huesped">
+                    <option value="">Seleccione Tipo de Huesped</option>
+                    <option value="Natural">Natural</option>
+                    <option value="Empresa">Empresa</option>
+                </select>
+                <label for="tipo_de_huesped" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tipo de Huesped</label>
+            </div>
+
+            <!-- Tipo de Documento -->
+            <div class="relative z-0 w-full group">
+                <select name="tipo_de_documento" id="tipo_de_documento" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required formControlName="tipo_de_documento">
+                    <option value="">Seleccione Tipo de Documento</option>
+                    <option value="CI">CI</option>
+                    <option value="pasaporte">Pasaporte</option>
+                    <option value="carnet_de_extranjero">Carnet de Extranjero</option>
+                    <option value="NIT">NIT</option>
+                </select>
+                <label for="tipo_de_documento" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tipo de Documento</label>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Número de Documento -->
+            <div class="relative z-0 w-full group">
+                <input type="text" name="floating_number_doc" id="floating_number_doc" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required formControlName="numero_documento" />
+                <label for="floating_number_doc" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Número de Documento</label>
+            </div>
+
+            <!-- Nombre -->
+            <div class="relative z-0 w-full group">
+                <input type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required formControlName="nombre" />
+                <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nombre</label>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Apellido -->
+            <div class="relative z-0 w-full group">
+                <input type="text" name="floating_last_name" id="floating_last_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required formControlName="apellido" />
+                <label for="floating_last_name" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Apellido</label>
+            </div>
+
+            <!-- Fecha de Nacimiento -->
+            <div class="relative z-0 w-full group">
+                <input type="date" name="floating_date" id="floating_date" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required formControlName="fecha_de_nacimiento" />
+                <label for="floating_date" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Fecha de Nacimiento</label>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Estado Civil -->
+            <div class="relative z-0 w-full group">
+                <select name="estado_civil" id="estado_civil" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required formControlName="estado_civil">
+                    <option value="">Seleccione Estado Civil</option>
+                    <option value="soltero">Soltero</option>
+                    <option value="casado">Casado</option>
+                    <option value="divorciado">Divorciado</option>
+                    <option value="viudo">Viudo</option>
+                </select>
+                <label for="estado_civil" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Estado Civil</label>
+            </div>
+
+            <!-- Correo -->
+            <div class="relative z-0 w-full group">
+                <input type="email" name="floating_email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required formControlName="correo" />
+                <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Correo Electrónico</label>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Nacionalidad -->
+            <div class="relative z-0 w-full group">
+                <input type="text" name="nacionalidad" id="nacionalidad" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required formControlName="nacionalidad" />
+                <label for="nacionalidad" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nacionalidad</label>
+            </div>
+
+            <!-- Procedencia -->
+            <div class="relative z-0 w-full group">
+                <input type="text" name="procedencia" id="procedencia" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required formControlName="procedencia" />
+                <label for="procedencia" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Procedencia</label>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Dirección -->
+            <div class="relative z-0 w-full group">
+                <input type="text" name="floating_address" id="floating_address" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required formControlName="direccion" />
+                <label for="floating_address" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Dirección</label>
+            </div>
+
+            <!-- Teléfono -->
+            <div class="relative z-0 w-full group">
+                <input type="tel" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required formControlName="telefono" />
+                <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Teléfono (123-456-7890)</label>
+            </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="flex justify-center mt-6">
+            <button (click)="crearCliente()" type="submit" class="relative inline-flex items-center px-12 py-3 overflow-hidden text-lg font-medium text-indigo-600 border-2 border-indigo-600 rounded-full hover:text-white group hover:bg-gray-50">
+                <span class="absolute left-0 block w-full h-0 transition-all bg-indigo-600 opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
+                <span class="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </span>
+                <span class="relative">Guardar Cliente</span>
+            </button>
+        </div>
+    </form>
+
+
+    </div>
+
+    <!-- Formulario Modificar Cliente -->
+    <div class=" justify-center rounded bg-white h-auto dark:bg-gray-800 p-4">
+
+      <form [formGroup]="validarFormulario" id="validarFormulario" class="p-4 max-w-2xl mx-auto bg-white rounded-lg shadow-md space-y-6">
+        <!-- Inputs -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Crear Reserva</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Cliente ID -->
+            <div class="relative z-0 w-full group">
+                <input type="number" name="cliente_id" id="cliente_id" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required formControlName="cliente_id" />
+                <label for="cliente_id" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">ID del Cliente</label>
+            </div>
+
+            <!-- Habitación ID -->
+            <div class="relative z-0 w-full group">
+                <input type="number" name="habitacion_id" id="habitacion_id" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required formControlName="habitacion_id" />
+                <label for="habitacion_id" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">ID de la Habitación</label>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Fecha de Inicio -->
+            <div class="relative z-0 w-full group">
+                <input type="date" name="fecha_inicio" id="fecha_inicio" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required formControlName="fecha_inicio" />
+                <label for="fecha_inicio" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Fecha de Inicio</label>
+            </div>
+
+            <!-- Fecha de Fin -->
+            <div class="relative z-0 w-full group">
+                <input type="date" name="fecha_fin" id="fecha_fin" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required formControlName="fecha_fin" />
+                <label for="fecha_fin" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Fecha de Fin</label>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Número de Personas -->
+            <div class="relative z-0 w-full group">
+                <input type="number" name="numero_personas" id="numero_personas" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required formControlName="numero_personas" />
+                <label for="numero_personas" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Número de Personas</label>
+            </div>
+
+            <!-- Adelanto -->
+            <div class="relative z-0 w-full group">
+                <input type="number" step="0.01" name="adelanto" id="adelanto" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required formControlName="adelanto" />
+                <label for="adelanto" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Adelanto</label>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Tipo de Comprobante -->
+            <div class="relative z-0 w-full group">
+                <select name="tipo_comprobante" id="tipo_comprobante" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required formControlName="tipo_comprobante">
+                    <option value="">Seleccione Tipo de Comprobante</option>
+                    <option value="Factura">Factura</option>
+                    <option value="Recibo">Recibo</option>
+                </select>
+                <label for="tipo_comprobante" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tipo de Comprobante</label>
+            </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="flex justify-center mt-6">
+            <button (click)="crearReserva()" type="submit" class="relative inline-flex items-center px-12 py-3 overflow-hidden text-lg font-medium text-indigo-600 border-2 border-indigo-600 rounded-full hover:text-white group hover:bg-gray-50">
+                <span class="absolute left-0 block w-full h-0 transition-all bg-indigo-600 opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
+                <span class="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </span>
+                <span class="relative">Guardar Reserva</span>
+            </button>
+        </div>
+    </form>
+
+
+    </div>
+
+    <!-- Formulario Eliminar Cliente -->
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

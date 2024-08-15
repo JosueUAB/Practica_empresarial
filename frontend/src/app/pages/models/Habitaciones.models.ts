@@ -9,7 +9,7 @@ export class Habitacion
     costo: number,
     tv: boolean,
     ducha: boolean,
-    baño: boolean,
+    banio: boolean,
     disponible: boolean,
     estado: 'disponible' | 'mantenimiento' | 'limpieza'| 'ocupado'| 'reservado',
     wifi_id?: number,

@@ -1,1 +1,302 @@
-<p>reservas works!</p>
+
+
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+  @for (lista of listadeHabitaciones; track $index) {
+
+    @switch (lista.estado) {
+      @case ("disponible") {
+         <!-- Tarjeta para habitación disponible -->
+  <div class="max-w-sm p-6 bg-green-600 text-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative transition-transform transform hover:scale-105 hover:shadow-2xl duration-300 ease-in-out">
+    <a    >
+      <h5 class="mb-2 text-3xl font-bold tracking-tight text-white">Habitacion {{lista.numero}}</h5>
+      <p class="text-lg">Tipo: <span class="font-bold text-green-200">{{lista.tipo}}</span></p>
+    </a>
+    <p class="mb-3 font-normal text-gray-100">{{lista.descripcion}} </p>
+    <div class="mb-4 flex space-x-2">
+      @if (lista.tv===1) {
+        <span class="bg-green-200 text-green-800 px-2 py-1 text-sm rounded">TV</span>
+
+      }
+      @if (lista.ducha ===1) {
+        <span class="bg-yellow-200 text-yellow-800 px-2 py-1 text-sm rounded">Ducha</span>
+      }
+      @if (lista.banio===1) {
+        <span class="bg-gray-200 text-gray-800 px-2 py-1 text-sm rounded">Baño</span>
+      }
+      <span class="bg-blue-200 text-blue-800 px-2 py-1 text-sm rounded">Wi-Fi</span>
+
+      <!-- <span class="bg-green-200 text-green-800 px-2 py-1 text-sm rounded">TV</span>
+      <span class="bg-blue-200 text-blue-800 px-2 py-1 text-sm rounded">Wi-Fi</span>
+      <span class="bg-yellow-200 text-yellow-800 px-2 py-1 text-sm rounded">Ducha</span> -->
+
+    </div>
+    <div class="flex justify-between items-center mb-4">
+      <p class="font-bold text-2xl">Bs. {{lista.costo}}</p>
+      <p class="text-lg">Estado: <span class="font-bold text-green-200">{{lista.estado}}</span></p>
+    </div>
+    <a  [routerLink]="[ '/reservar_habitacion',  ]"  (click)="reservar(lista.id)" class="px-14 py-2.5 relative rounded group font-medium bg-purple-50 text-purple-600 inline-block">
+      <span class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-purple-600 group-hover:h-full opacity-90"></span>
+      <span  class="relative group-hover:text-white">Reservar</span>
+    </a>
+
+  </div>
+      }
+      @case ("reservado") {
+        <div class="max-w-sm p-6 bg-blue-600 text-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative transition-transform transform hover:scale-105 hover:shadow-2xl duration-300 ease-in-out">
+          <a href="#">
+
+            <h5 class="mb-2 text-3xl font-bold tracking-tight text-white">Habitación {{lista.numero}}</h5>
+
+          </a>
+          <p class="text-lg">Tipo: <span class="font-bold text-blue-200">{{lista.tipo}}</span></p>
+          <p class="mb-3 font-normal text-gray-100">{{lista.descripcion}}</p>
+          <div class="mb-4 flex space-x-2">
+            @if (lista.tv===1) {
+              <span class="bg-green-200 text-green-800 px-2 py-1 text-sm rounded">TV</span>
+
+            }
+            @if (lista.ducha ===1) {
+              <span class="bg-yellow-200 text-yellow-800 px-2 py-1 text-sm rounded">Ducha</span>
+            }
+            @if (lista.banio===1) {
+              <span class="bg-gray-200 text-gray-800 px-2 py-1 text-sm rounded">Baño</span>
+            }
+            <span class="bg-blue-200 text-blue-800 px-2 py-1 text-sm rounded">Wi-Fi</span>
+
+            <!-- <span class="bg-green-200 text-green-800 px-2 py-1 text-sm rounded">TV</span>
+            <span class="bg-blue-200 text-blue-800 px-2 py-1 text-sm rounded">Wi-Fi</span>
+            <span class="bg-yellow-200 text-yellow-800 px-2 py-1 text-sm rounded">Ducha</span> -->
+
+          </div>
+          <div class="flex justify-between items-center mb-4">
+            <p class="font-bold text-2xl">Bs. {{lista.costo}}</p>
+            <p class="text-lg">Estado: <span class="font-bold text-blue-200">Reservado</span></p>
+          </div>
+          <a href="#_" class="px-14 py-2.5 relative rounded group font-medium bg-purple-50 text-purple-600 inline-block">
+            <span class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-purple-600 group-hover:h-full opacity-90"></span>
+            <span class="relative group-hover:text-white">Reservar</span>
+          </a>
+        </div>
+      }
+      @case ("mantenimiento") {
+        <div class="max-w-sm p-6 bg-gray-600 text-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative transition-transform transform hover:scale-105 hover:shadow-2xl duration-300 ease-in-out">
+          <a >
+            <h5 class="mb-2 text-3xl font-bold tracking-tight text-white">Habitación {{lista.numero}}</h5>
+          </a>
+          <p class="text-lg">Tipo: <span class="font-bold text-gray-200">{{lista.tipo}}</span></p>
+          <p class="mb-3 font-normal text-gray-100">{{lista.descripcion}}</p>
+          <div class="mb-4 flex space-x-2">
+            @if (lista.tv===1) {
+              <span class="bg-green-200 text-green-800 px-2 py-1 text-sm rounded">TV</span>
+
+            }
+            @if (lista.ducha ===1) {
+              <span class="bg-yellow-200 text-yellow-800 px-2 py-1 text-sm rounded">Ducha</span>
+            }
+            @if (lista.banio===1) {
+              <span class="bg-gray-200 text-gray-800 px-2 py-1 text-sm rounded">Baño</span>
+            }
+            <span class="bg-blue-200 text-blue-800 px-2 py-1 text-sm rounded">Wi-Fi</span>
+
+            <!-- <span class="bg-green-200 text-green-800 px-2 py-1 text-sm rounded">TV</span>
+            <span class="bg-blue-200 text-blue-800 px-2 py-1 text-sm rounded">Wi-Fi</span>
+            <span class="bg-yellow-200 text-yellow-800 px-2 py-1 text-sm rounded">Ducha</span> -->
+            <span class="bg-gray-200 text-gray-800 px-2 py-1 text-sm rounded">Baño</span>
+          </div>
+          <div class="flex justify-between items-center mb-4">
+            <p class="font-bold text-2xl">Bs. {{lista.costo}}</p>
+            <p class="text-lg">Estado: <span class="font-bold text-gray-200">En Mantenimiento</span></p>
+          </div>
+          <a href="#_" class="px-14 py-2.5 relative rounded group font-medium bg-purple-50 text-purple-600 inline-block">
+            <span class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-purple-600 group-hover:h-full opacity-90"></span>
+            <span class="relative group-hover:text-white">Reservar</span>
+          </a>
+        </div>
+      }
+      @case ("limpieza") {
+        <div class="max-w-sm p-6 bg-yellow-600 text-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative transition-transform transform hover:scale-105 hover:shadow-2xl duration-300 ease-in-out">
+          <a href="#">
+            <h5 class="mb-2 text-3xl font-bold tracking-tight text-white">Habitación {{lista.numero}}</h5>
+          </a>
+          <p class="text-lg">Tipo: <span class="font-bold text-yellow-200">{{lista.tipo}}</span></p>
+          <p class="mb-3 font-normal text-gray-100">{{lista.descripcion}}</p>
+          <div class="mb-4 flex space-x-2">
+            @if (lista.tv===1) {
+              <span class="bg-green-200 text-green-800 px-2 py-1 text-sm rounded">TV</span>
+
+            }
+            @if (lista.ducha ===1) {
+              <span class="bg-yellow-200 text-yellow-800 px-2 py-1 text-sm rounded">Ducha</span>
+            }
+            @if (lista.banio===1) {
+              <span class="bg-gray-200 text-gray-800 px-2 py-1 text-sm rounded">Baño</span>
+            }
+            <span class="bg-blue-200 text-blue-800 px-2 py-1 text-sm rounded">Wi-Fi</span>
+
+            <!-- <span class="bg-green-200 text-green-800 px-2 py-1 text-sm rounded">TV</span>
+            <span class="bg-blue-200 text-blue-800 px-2 py-1 text-sm rounded">Wi-Fi</span>
+            <span class="bg-yellow-200 text-yellow-800 px-2 py-1 text-sm rounded">Ducha</span> -->
+            <span class="bg-gray-200 text-gray-800 px-2 py-1 text-sm rounded">Baño</span>
+          </div>
+          <div class="flex justify-between items-center mb-4">
+            <p class="font-bold text-2xl">Bs. {{lista.costo}}</p>
+            <p class="text-lg">Estado: <span class="font-bold text-yellow-200">En Limpieza</span></p>
+          </div>
+          <a href="#_" class="px-14 py-2.5 relative rounded group font-medium bg-purple-50 text-purple-600 inline-block">
+            <span class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-purple-600 group-hover:h-full opacity-90"></span>
+            <span class="relative group-hover:text-white">Reservar</span>
+          </a>
+        </div>
+
+      }
+      @case ("ocupado") {
+        <div class="max-w-sm p-6 bg-red-600 text-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative transition-transform transform hover:scale-105 hover:shadow-2xl duration-300 ease-in-out">
+          <a href="#">
+            <h5 class="mb-2 text-3xl font-bold tracking-tight text-white">Habitación {{lista.numero}}</h5>
+          </a>
+          <p class="text-lg">Tipo: <span class="font-bold text-red-200">{{lista.tipo}}</span></p>
+          <p class="mb-3 font-normal text-gray-100">{{lista.descripcion}}</p>
+          <div class="mb-4 flex space-x-2">
+            @if (lista.tv===1) {
+              <span class="bg-green-200 text-green-800 px-2 py-1 text-sm rounded">TV</span>
+
+            }
+            @if (lista.ducha ===1) {
+              <span class="bg-yellow-200 text-yellow-800 px-2 py-1 text-sm rounded">Ducha</span>
+            }
+            <span class="bg-blue-200 text-blue-800 px-2 py-1 text-sm rounded">Wi-Fi</span>
+
+            <!-- <span class="bg-green-200 text-green-800 px-2 py-1 text-sm rounded">TV</span>
+            <span class="bg-blue-200 text-blue-800 px-2 py-1 text-sm rounded">Wi-Fi</span>
+            <span class="bg-yellow-200 text-yellow-800 px-2 py-1 text-sm rounded">Ducha</span> -->
+          </div>
+          <div class="flex justify-between items-center mb-4">
+            <p class="font-bold text-2xl">Bs. {{lista.costo}}</p>
+            <p class="text-lg">Estado: <span class="font-bold text-red-200">Ocupado</span></p>
+          </div>
+          <a href="#_" class="px-14 py-2.5 relative rounded group font-medium bg-purple-50 text-purple-600 inline-block">
+            <span class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-purple-600 group-hover:h-full opacity-90"></span>
+            <span class="relative group-hover:text-white">Reservar</span>
+          </a>
+        </div>
+
+      }
+    }
+  }
+  <!-- Tarjeta para habitación disponible -->
+  <!-- <div class="max-w-sm p-6 bg-green-600 text-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative transition-transform transform hover:scale-105 hover:shadow-2xl duration-300 ease-in-out">
+    <a href="#">
+      <h5 class="mb-2 text-3xl font-bold tracking-tight text-white">Habitación 101</h5>
+    </a>
+    <p class="mb-3 font-normal text-gray-100">Habitación individual</p>
+    <div class="mb-4 flex space-x-2">
+      <span class="bg-green-200 text-green-800 px-2 py-1 text-sm rounded">TV</span>
+      <span class="bg-blue-200 text-blue-800 px-2 py-1 text-sm rounded">Wi-Fi</span>
+      <span class="bg-yellow-200 text-yellow-800 px-2 py-1 text-sm rounded">Ducha</span>
+      <span class="bg-gray-200 text-gray-800 px-2 py-1 text-sm rounded">Baño</span>
+    </div>
+    <div class="flex justify-between items-center mb-4">
+      <p class="font-bold text-2xl">$60.00</p>
+      <p class="text-lg">Estado: <span class="font-bold text-green-200">Disponible</span></p>
+    </div>
+    <a href="#_" class="px-14 py-2.5 relative rounded group font-medium bg-purple-50 text-purple-600 inline-block">
+      <span class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-purple-600 group-hover:h-full opacity-90"></span>
+      <span class="relative group-hover:text-white">Reservar</span>
+    </a>
+  </div> -->
+
+  <!-- Tarjeta para habitación en mantenimiento -->
+  <!-- <div class="max-w-sm p-6 bg-gray-600 text-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative transition-transform transform hover:scale-105 hover:shadow-2xl duration-300 ease-in-out">
+    <a href="#">
+      <h5 class="mb-2 text-3xl font-bold tracking-tight text-white">Habitación 102</h5>
+    </a>
+    <p class="mb-3 font-normal text-gray-100">Habitación doble con cama king-size</p>
+    <div class="mb-4 flex space-x-2">
+      <span class="bg-green-200 text-green-800 px-2 py-1 text-sm rounded">TV</span>
+      <span class="bg-blue-200 text-blue-800 px-2 py-1 text-sm rounded">Wi-Fi</span>
+      <span class="bg-yellow-200 text-yellow-800 px-2 py-1 text-sm rounded">Ducha</span>
+      <span class="bg-gray-200 text-gray-800 px-2 py-1 text-sm rounded">Baño</span>
+    </div>
+    <div class="flex justify-between items-center mb-4">
+      <p class="font-bold text-2xl">$80.90</p>
+      <p class="text-lg">Estado: <span class="font-bold text-gray-200">En Mantenimiento</span></p>
+    </div>
+    <a href="#_" class="px-14 py-2.5 relative rounded group font-medium bg-purple-50 text-purple-600 inline-block">
+      <span class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-purple-600 group-hover:h-full opacity-90"></span>
+      <span class="relative group-hover:text-white">Reservar</span>
+    </a>
+  </div> -->
+
+  <!-- Tarjeta para habitación en limpieza -->
+  <!-- <div class="max-w-sm p-6 bg-yellow-600 text-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative transition-transform transform hover:scale-105 hover:shadow-2xl duration-300 ease-in-out">
+    <a href="#">
+      <h5 class="mb-2 text-3xl font-bold tracking-tight text-white">Habitación 103</h5>
+    </a>
+    <p class="mb-3 font-normal text-gray-100">Habitación familiar</p>
+    <div class="mb-4 flex space-x-2">
+      <span class="bg-green-200 text-green-800 px-2 py-1 text-sm rounded">TV</span>
+      <span class="bg-blue-200 text-blue-800 px-2 py-1 text-sm rounded">Wi-Fi</span>
+      <span class="bg-yellow-200 text-yellow-800 px-2 py-1 text-sm rounded">Ducha</span>
+      <span class="bg-gray-200 text-gray-800 px-2 py-1 text-sm rounded">Baño</span>
+    </div>
+    <div class="flex justify-between items-center mb-4">
+      <p class="font-bold text-2xl">$100.50</p>
+      <p class="text-lg">Estado: <span class="font-bold text-yellow-200">En Limpieza</span></p>
+    </div>
+    <a href="#_" class="px-14 py-2.5 relative rounded group font-medium bg-purple-50 text-purple-600 inline-block">
+      <span class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-purple-600 group-hover:h-full opacity-90"></span>
+      <span class="relative group-hover:text-white">Reservar</span>
+    </a>
+  </div> -->
+
+  <!-- Tarjeta para habitación ocupada -->
+  <!-- <div class="max-w-sm p-6 bg-red-600 text-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative transition-transform transform hover:scale-105 hover:shadow-2xl duration-300 ease-in-out">
+    <a href="#">
+      <h5 class="mb-2 text-3xl font-bold tracking-tight text-white">Habitación 104</h5>
+    </a>
+    <p class="mb-3 font-normal text-gray-100">Habitación matrimonial</p>
+    <div class="mb-4 flex space-x-2">
+      <span class="bg-green-200 text-green-800 px-2 py-1 text-sm rounded">TV</span>
+      <span class="bg-blue-200 text-blue-800 px-2 py-1 text-sm rounded">Wi-Fi</span>
+      <span class="bg-yellow-200 text-yellow-800 px-2 py-1 text-sm rounded">Ducha</span>
+      <span class="bg-gray-200 text-gray-800 px-2 py-1 text-sm rounded">Baño</span>
+    </div>
+    <div class="flex justify-between items-center mb-4">
+      <p class="font-bold text-2xl">$120.75</p>
+      <p class="text-lg">Estado: <span class="font-bold text-red-200">Ocupado</span></p>
+    </div>
+    <a href="#_" class="px-14 py-2.5 relative rounded group font-medium bg-purple-50 text-purple-600 inline-block">
+      <span class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-purple-600 group-hover:h-full opacity-90"></span>
+      <span class="relative group-hover:text-white">Reservar</span>
+    </a>
+  </div> -->
+
+  <!-- Tarjeta para habitación reservada -->
+  <!-- <div class="max-w-sm p-6 bg-blue-600 text-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative transition-transform transform hover:scale-105 hover:shadow-2xl duration-300 ease-in-out">
+    <a href="#">
+      <h5 class="mb-2 text-3xl font-bold tracking-tight text-white">Habitación 105</h5>
+    </a>
+    <p class="mb-3 font-normal text-gray-100">Habitación doble con balcón</p>
+    <div class="mb-4 flex space-x-2">
+      <span class="bg-green-200 text-green-800 px-2 py-1 text-sm rounded">TV</span>
+      <span class="bg-blue-200 text-blue-800 px-2 py-1 text-sm rounded">Wi-Fi</span>
+      <span class="bg-yellow-200 text-yellow-800 px-2 py-1 text-sm rounded">Ducha</span>
+      <span class="bg-gray-200 text-gray-800 px-2 py-1 text-sm rounded">Baño</span>
+    </div>
+    <div class="flex justify-between items-center mb-4">
+      <p class="font-bold text-2xl">$140.00</p>
+      <p class="text-lg">Estado: <span class="font-bold text-blue-200">Reservado</span></p>
+    </div>
+    <a href="#_" class="px-14 py-2.5 relative rounded group font-medium bg-purple-50 text-purple-600 inline-block">
+      <span class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-purple-600 group-hover:h-full opacity-90"></span>
+      <span class="relative group-hover:text-white">Reservar</span>
+    </a>
+  </div> -->
+
+</div>
+
+
+
+

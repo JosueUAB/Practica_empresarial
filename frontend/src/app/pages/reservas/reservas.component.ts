@@ -6,6 +6,9 @@ import { Wifi } from '../models/wifi.model';
 import { Habitacion } from '../models/Habitaciones.models';
 import { HabitacionService } from '../service/habitaciones.service';
 import { FormBuilder } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { ReservaService } from '../service/reserva.service';
+
 
 
 
@@ -14,7 +17,11 @@ import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-reservas',
   standalone: true,
-  imports: [CommonModule],
+  imports: [  CommonModule,
+              RouterModule,
+
+  ],
+
   templateUrl: './reservas.component.html',
   styleUrl: './reservas.component.scss'
 })
@@ -27,7 +34,8 @@ export class ReservasComponent {
   constructor(
     private fb: FormBuilder,
     private habitacionService: HabitacionService, //Inyecta el servicio de habitaciones
-    private wifiService: WifiService // Inyecta el servicio de Wi-Fi
+    private wifiService: WifiService ,// Inyecta el servicio de Wi-Fi
+    private reservaService: ReservaService // Inyecta el servicio de Reserva
   ) {}
 
   ngOnInit(): void {
@@ -61,6 +69,13 @@ export class ReservasComponent {
       }
     );
   }
+
+  reservar(valor:any){
+
+    console.log(valor);
+    this.reservaService.setReserva(valor); // Enviar la reserva al servicio
+  }
+
 
 
 
