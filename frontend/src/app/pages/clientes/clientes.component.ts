@@ -5,12 +5,17 @@ import { ClientesService } from '../service/cliente.service'; // Importa el serv
 import Swal from 'sweetalert2'; // Importa SweetAlert2 para notificaciones
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';  // Asegúrate de importar ReactiveFormsModule
+import { RouterModule } from '@angular/router';
+import { Modal } from 'flowbite';
+
 
 @Component({
   selector: 'app-clientes',
   standalone: true,
   imports: [CommonModule,
-       ReactiveFormsModule
+       ReactiveFormsModule,
+
+
   ],
   templateUrl: 'Clientes.component.html',
   styleUrls: ['./clientes.component.css'], // Asegúrate de que sea styleUrls en plural
@@ -18,6 +23,11 @@ import { ReactiveFormsModule } from '@angular/forms';  // Asegúrate de importar
 export class ClientesComponent implements OnInit {
   cargando: boolean = false;
   listadeClientes:any = [];
+  ModalCrearCliente=false;
+  ModalActualizarCliente=false;
+  ModalVerCliente:boolean=false;
+  esSoloLectura: boolean = true;
+  botonguardar:boolean = false;
 
   validarFormulario: FormGroup = this.fb.group({
     nombre: ['', Validators.required],
@@ -32,12 +42,16 @@ export class ClientesComponent implements OnInit {
     telefono: ['', [ ]],
     tipo_de_huesped: ['', Validators.required],
     tipo_de_documento: ['', Validators.required],
+    id:['']
   });
 
   constructor(
     private fb:FormBuilder,
     private clientesService: ClientesService) {
     this.getClientes();
+
+
+
   }
 
   ngOnInit(): void {}
@@ -122,6 +136,7 @@ export class ClientesComponent implements OnInit {
           confirmButtonText: 'Aceptar',
         });
         this.getClientes();
+        this.CerrarModalCrearCliente();
         this.validarFormulario.reset();
       },
       (error) => {
@@ -153,24 +168,132 @@ export class ClientesComponent implements OnInit {
       }
     );
   }
-
-
-
-  eliminarCliente(id: any) {
-    this.clientesService.eliminarCliente(id)
-      .subscribe(resp => {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Cliente eliminado',
-          text: 'El cliente ha sido eliminado con éxito.',
-          showConfirmButton: false,
-          timer: 1500
-        });
-        this.getClientes();
-      }, (error) => {
-        console.log(error);
-      });
+  eliminarClienteModal(clienteId: string) {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Una vez eliminado, ¡no podrás recuperar este cliente!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.clientesService.eliminarCliente(clienteId).subscribe(
+          response => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Cliente eliminado exitosamente',
+              text: 'El cliente ha sido eliminado correctamente.',
+              confirmButtonText: 'Aceptar'
+            }).then(() => {
+              // Puedes hacer alguna acción adicional aquí, como actualizar la lista de clientes o redirigir
+              this.getClientes(); // Asumiendo que tienes un método para obtener la lista actualizada de clientes
+            });
+          },
+          error => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error al eliminar cliente',
+              text: 'Hubo un problema al intentar eliminar el cliente. Inténtalo de nuevo más tarde.',
+              confirmButtonText: 'Aceptar'
+            });
+          }
+        );
+      }
+    });
   }
+
+
+
+  abrirModalCrearCliente() {
+    this.ModalCrearCliente = true;
+
+  }
+  CerrarModalCrearCliente() {
+    this.ModalCrearCliente = false;
+  }
+  abrirModalVerCliente(id:any){
+   this.ModalVerCliente = true;
+   this.esSoloLectura = true;
+    this.clientesService.detallesCliente(id).subscribe(
+      (response: any) => {
+        const cliente = response.cliente;
+        this.validarFormulario.patchValue(cliente);
+        console.log(this.validarFormulario.value);
+      },
+      (error) => {
+        console.error('Error al cargar detalles del cliente:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudieron cargar los detalles del cliente.',
+          confirmButtonText: 'Aceptar',
+        });
+      }
+    );
+  }
+  cerrarModalVerCliente() {
+    this.ModalVerCliente = false;
+    this.botonguardar=false;
+    this.validarFormulario.reset();
+
+  }
+
+
+  actualizarCliente() {
+    if (this.validarFormulario.valid) {
+      const cliente: Clientes = this.validarFormulario.value;
+
+      this.clientesService.editarCliente(cliente).subscribe(
+
+        response => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Cliente actualizado exitosamente',
+            text: 'Los datos del cliente se han actualizado correctamente.',
+            confirmButtonText: 'Aceptar'
+          }).then(() => {
+            // Puedes hacer alguna acción adicional aquí, como redirigir o limpiar el formulario
+          });
+          this.getClientes();
+          this.validarFormulario.reset();
+
+        },
+        error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al actualizar cliente',
+            text: 'Hubo un problema al intentar actualizar el cliente. Inténtalo de nuevo más tarde.',
+            confirmButtonText: 'Aceptar'
+          });
+        }
+      );
+    }
+
+    else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Formulario inválido',
+        text: 'Por favor, completa todos los campos requeridos.',
+        confirmButtonText: 'Aceptar'
+      });
+    }
+    this.botonguardar=false;
+    this.cerrarModalVerCliente();
+  }
+
+
+  CerrarModalActualizarCliente() {
+    this.ModalActualizarCliente = false;
+    this.botonguardar=false;
+  }
+
+  editarinmput(){
+    this.esSoloLectura = false;
+    this.botonguardar = true;
+  }
+
 
 }

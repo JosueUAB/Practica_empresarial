@@ -2,10 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WifiController;
 use App\Http\Controllers\ClientesController;
-use App\Http\Controllers\EstadiasController;
-use App\Http\Controllers\ReportesController;
-use App\Http\Controllers\HabitacionesController;
+use App\Http\Controllers\ReservasController;
+use App\Http\Controllers\HabitacionController;
+
 
 
 #region clientes
@@ -20,28 +21,42 @@ Route::put('/clientes/{id}',[clientesController::Class, 'actualizar']);
 Route::delete('/clientes/{id}',[clientesController::Class, 'eliminar']);
 #endregion clientes
 
+#region habitaciones
+Route::get('/habitaciones', [habitacionController::class, 'index']);
 
-#region Habitaciones
+Route::get('/habitaciones/{id}', [habitacionController::class, 'mostrar']);
 
-Route::get('/habitaciones', [HabitacionesController::class, 'index']);
-Route::post('/habitaciones', [HabitacionesController::class, 'guardar']);
-Route::get('/habitaciones/{id}', [HabitacionesController::class, 'mostrar']);
-Route::put('/habitaciones/{id}', [HabitacionesController::class, 'actualizar']);
-Route::delete('/habitaciones/{id}', [HabitacionesController::class, 'eliminar']);
-#endregion Habitaciones
+Route::post('/habitaciones', [habitacionController::class, 'guardar']);
 
+Route::put('/habitaciones/{id}', [habitacionController::class, 'actualizar']);
 
-
-
+Route::delete('/habitaciones/{id}', [habitacionController::class, 'eliminar']);
+#endregion habitaciones
 
 
-Route::prefix('estadias')->group(function () {
-    Route::get('/', [EstadiasController::class, 'index']);
-    Route::post('/', [EstadiasController::class, 'guardar']);
-    Route::get('/{id}', [EstadiasController::class, 'mostrar']);
-    Route::put('/{id}', [EstadiasController::class, 'actualizar']);
-    Route::delete('/{id}', [EstadiasController::class, 'eliminar']);
-});
 
-// Ruta para generar el reporte mensual
-Route::get('/reportes/mesuales', [ReportesController::class, 'reporteMensual']);
+#region wifi
+Route::get('/wifi', [WifiController::class, 'index']);
+
+Route::get('/wifi/{id}', [WifiController::class, 'mostrar']);
+
+Route::post('/wifi', [WifiController::class, 'guardar']);
+
+Route::put('/wifi/{id}', [WifiController::class, 'actualizar']);
+
+Route::delete('/wifi/{id}', [WifiController::class, 'eliminar']);
+#endregion wifi
+
+
+
+#region reservas
+Route::get('/reservas', [ReservasController::class, 'index']);
+
+Route::get('/reservas/{id}', [ReservasController::class, 'mostrar']);
+
+Route::post('/reservas', [ReservasController::class, 'guardar']);
+
+Route::put('/reservas/{id}', [ReservasController::class, 'actualizar']);
+
+Route::delete('/reservas/{id}', [ReservasController::class, 'eliminar']);
+#endregion reservas

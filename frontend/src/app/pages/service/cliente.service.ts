@@ -41,6 +41,5 @@ crearCliente(clientes:any){
     return this.http.delete(`${url}/clientes/${id}`);
   }
 
-  //buscar cliente
 
 }

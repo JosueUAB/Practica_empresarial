@@ -12,6 +12,7 @@ class Habitaciones extends Model
     protected $table = 'habitaciones';
 
     protected $fillable = [
+        'numero_piso',
         'numero',
         'tipo',
         'cantidad_camas',
@@ -23,29 +24,12 @@ class Habitaciones extends Model
         'ducha',
         'baño',
         'disponible',
-        'estado'
+        'estado',
     ];
 
-    protected $attributes = [
-        'tv' => false,
-        'ducha' => false,
-        'baño' => false,
-        'disponible' => true,
-        'estado' => 'disponible',
-    ];
-
+    // Define the relationship with the Wifi model
     public function wifi()
     {
         return $this->belongsTo(Wifi::class, 'wifi_id');
-    }
-
-    public function reservas()
-    {
-        return $this->hasMany(Reservas::class, 'id_habitacion');
-    }
-
-    public function asignacionLimpieza()
-    {
-        return $this->hasMany(AsignacionLimpieza::class, 'id_habitacion');
     }
 }

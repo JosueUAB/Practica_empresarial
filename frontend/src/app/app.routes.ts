@@ -3,7 +3,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { HabitacionesComponent } from './pages/habitaciones/habitaciones.component';
 import { PanelComponent } from './pages/panel/panel.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
-import { RegistroHabitacionesComponent } from './pages/habitaciones/registro-habitaciones/registro-habitaciones.component';
+import { WifiComponent } from './pages/wifi/wifi.component';
+import { ReservasComponent } from './pages/reservas/reservas.component';
 
 export const routes: Routes = [
  {path:'login',component:LoginComponent},
@@ -11,10 +12,11 @@ export const routes: Routes = [
   //rutas hijas
   children:[
     {path:'',component:HabitacionesComponent},
-    {path:'nueva',component:RegistroHabitacionesComponent},
     {path:'editar/:id',component:HabitacionesComponent}
   ]
  },
+ {path:'wifi',component:WifiComponent},
  {path:'panel',component:PanelComponent},
-  {path:'clientes',component:ClientesComponent}
+  {path:'clientes',component:ClientesComponent},
+  {path:'hospedaje',component:ReservasComponent}
 ];
