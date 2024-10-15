@@ -6,6 +6,13 @@ import Swal from 'sweetalert2'; // Importa SweetAlert2 para notificaciones
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';  // Asegúrate de importar ReactiveFormsModule
 import { RouterModule } from '@angular/router';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+import QRCode from 'qrcode';
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+
 
 @Component({
   selector: 'app-wifi',
@@ -241,5 +248,10 @@ export class WifiComponent implements OnInit {
   editarFormulario() {
     this.esSoloLectura = false;
     this.botonguardar = true;
+  }
+
+
+  imprimirwifi(){
+    
   }
 }

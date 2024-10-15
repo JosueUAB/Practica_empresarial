@@ -2,8 +2,12 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+
+
+
     "outDir": "./dist/out-tsc",
     "strict": true,
+
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -23,6 +27,7 @@
       "dom"
     ]
   },
+
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

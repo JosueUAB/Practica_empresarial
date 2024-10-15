@@ -6,6 +6,8 @@ import { SidebarComponent } from "./pages/sidebar/sidebar.component";
 import { HomeComponent } from './pages/home/home.component';
 import { NavbarComponent } from "./pages/navbar/navbar.component";
 import { initFlowbite } from 'flowbite';
+import { MatInputModule } from '@angular/material/input';
+
 
 @Component({
   selector: 'app-root',
@@ -15,6 +17,7 @@ import { initFlowbite } from 'flowbite';
     LoginComponent,
     RouterModule,
     SidebarComponent,
+    MatInputModule,
     HomeComponent,
      NavbarComponent],
   templateUrl: './app.component.html',

@@ -6,10 +6,10 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ReservaService {
-  private reservaSource = new BehaviorSubject<any>(null);
+  private reservaSource = new BehaviorSubject<{ valor1: any, valor2: any } | null>(null);
   reserva$ = this.reservaSource.asObservable();
 
-  setReserva(reserva: any) {
-    this.reservaSource.next(reserva);
+  setReserva(valor1: any, valor2: any) {
+    this.reservaSource.next({ valor1, valor2 });
   }
 }

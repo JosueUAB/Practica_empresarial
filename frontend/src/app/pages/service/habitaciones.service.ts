@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Habitacion } from '../models/Habitaciones.models';
 import { map } from 'rxjs/operators';
 import { Wifi } from '../models/wifi.model';
+import { Observable } from 'rxjs';
 
 const url = 'http://localhost:8000/api';
 
@@ -48,4 +49,13 @@ export class HabitacionService {
         map(resp => resp.wifi)
       );
   }
+
+   // Obtener la cantidad de habitaciones disponibles
+   getCantidadHabitacionesDisponibles(): Observable<number> {
+    return this.http.get<{ habitaciones: any[] }>(`${url}/habitaciones`)
+      .pipe(
+        map(resp => resp.habitaciones.filter(h => h.estado === 'disponible').length)
+      );
+  }
+
 }

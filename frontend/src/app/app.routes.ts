@@ -6,6 +6,7 @@ import { ClientesComponent } from './pages/clientes/clientes.component';
 import { WifiComponent } from './pages/wifi/wifi.component';
 import { ReservasComponent } from './pages/reservas/reservas.component';
 import { ReservarHabitacionComponent } from './pages/reservar-habitacion/reservar-habitacion.component';
+import { ListaReservasComponent } from './pages/lista-reservas/lista-reservas.component';
 
 export const routes: Routes = [
 
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { path: 'clientes', component: ClientesComponent },
   { path: 'hospedaje', component: ReservasComponent },
   { path: 'reservar_habitacion', component: ReservarHabitacionComponent },
+  { path: 'listaReserva', component: ListaReservasComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },  // Ruta por defecto
   { path: '**', redirectTo: 'login' }  // Ruta de captura para redirigir a una ruta válida
 ];

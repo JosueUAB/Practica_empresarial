@@ -135,21 +135,55 @@
     <!-- Formulario Modificar Cliente -->
     <div class=" justify-center rounded bg-white h-auto dark:bg-gray-800 p-4">
 
-      <form [formGroup]="validarFormulario" id="validarFormulario" class="p-4 max-w-2xl mx-auto bg-white rounded-lg shadow-md space-y-6">
+      <form [formGroup]="validarFormularioReservas" id="validarFormulario" class="p-4 max-w-2xl mx-auto bg-white rounded-lg shadow-md space-y-6">
         <!-- Inputs -->
         <h2 class="text-2xl font-bold text-gray-800 mb-6">Crear Reserva</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <!-- Cliente ID -->
             <div class="relative z-0 w-full group">
-                <input type="number" name="cliente_id" id="cliente_id" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required formControlName="cliente_id" />
-                <label for="cliente_id" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">ID del Cliente</label>
-            </div>
+              <select name="cliente_id" id="cliente_id" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required formControlName="cliente_id">
+                  <option value="">Seleccione Tipo de Documento</option>
+
+                  @for (lista of listadeClientes; track $index) {
+                    <option value="{{lista.id }}">{{ lista.numero_documento}} -> {{lista.nombre}}</option>
+                  }
+
+              </select>
+              <label for="tipo_de_documento" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tipo de Documento</label>
+          </div>
 
             <!-- Habitación ID -->
-            <div class="relative z-0 w-full group">
+            <!-- <div class="relative z-0 w-full group">
                 <input type="number" name="habitacion_id" id="habitacion_id" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required formControlName="habitacion_id" />
+
                 <label for="habitacion_id" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">ID de la Habitación</label>
+            </div> -->
+            <div class="relative z-0 w-full group">
+              <input
+                type="text"
+                name="habitacion_id_display"
+                id="habitacion_id_display"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-gray-800 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                [value]="habitacionIdDisplay"
+                readonly
+              />
+              <input
+                type="hidden"
+                name="habitacion_id"
+                id="habitacion_id"
+                formControlName="habitacion_id"
+                [value]="habitacionId"
+              />
+              <label
+                for="habitacion_id"
+                class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                ID de la Habitación
+              </label>
+
+
             </div>
         </div>
 
@@ -215,6 +249,7 @@
 
 
 
+<app-lista-reservas/>
 
 
 

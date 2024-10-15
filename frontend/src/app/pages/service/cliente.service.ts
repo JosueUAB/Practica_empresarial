@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ObtenerClientes } from '../interfaces/obtener_clientes.';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Clientes } from '../models/Clientes.models';
 
 const url='http://localhost:8000/api';
@@ -41,5 +41,25 @@ crearCliente(clientes:any){
     return this.http.delete(`${url}/clientes/${id}`);
   }
 
+  buscarClientePorNumeroDocumento(numeroDocumento: string) {
+    return this.http.get<Clientes[]>(`${url}/clientes?numero_documento=${numeroDocumento}`);
+  }
+
+  // Obtener la cantidad de clientes registrados
+  getCantidadClientesRegistrados(): Observable<number> {
+    return this.getClientes().pipe(
+      map(clientes => clientes.length)
+    );
+  }
+
+  // Obtener la cantidad de clientes activos
+  /// Obtener la cantidad de clientes activos
+
+getCantidadClientesActivos(): Observable<number> {
+  return this.http.get<{ clientes: any[] }>(`${url}/clientes`)
+    .pipe(
+      map(resp => resp.clientes.filter(cliente => cliente.estado === 'activo').length)
+    );
+}
 
 }

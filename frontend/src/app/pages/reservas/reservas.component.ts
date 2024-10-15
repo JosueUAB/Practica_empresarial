@@ -70,12 +70,10 @@ export class ReservasComponent {
     );
   }
 
-  reservar(valor:any){
-
-    console.log(valor);
-    this.reservaService.setReserva(valor); // Enviar la reserva al servicio
+  reservar(valor1: any, valor2: any) {
+    console.log(valor1, valor2);
+    this.reservaService.setReserva(valor1, valor2); // Enviar ambos valores al servicio
   }
-
 
 
 
